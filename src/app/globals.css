@@ -2,26 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #05050A;
+    --foreground: #f0f0f0;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground overflow-x-hidden antialiased;
+  }
+
+  /* Custom cursor only on desktop */
+  @media (min-width: 768px) and (pointer: fine) {
+    body,
+    a, button, [role="button"], input, select, textarea {
+      cursor: none;
+    }
+  }
+
+  /* Custom Selection */
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-[#05050A];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-card-border rounded-full hover:bg-card-hover transition-colors;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.08];
+  }
+  .glass-card {
+    @apply bg-card border border-card-border backdrop-blur-sm rounded-2xl;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+}
+
+/* Aurora Background Blob Animations — Pure CSS, zero JS */
+.aurora-blob-1 {
+  will-change: transform;
+  animation: aurora-move-1 15s ease-in-out infinite;
+}
+.aurora-blob-2 {
+  will-change: transform;
+  animation: aurora-move-2 20s ease-in-out infinite;
+}
+.aurora-blob-3 {
+  will-change: transform;
+  animation: aurora-move-3 18s ease-in-out infinite;
+}
+
+@keyframes aurora-move-1 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(50px, 100px, 0); }
+  66% { transform: translate3d(-50px, -50px, 0); }
+}
+
+@keyframes aurora-move-2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(-100px, 50px, 0); }
+  66% { transform: translate3d(50px, -100px, 0); }
+}
+
+@keyframes aurora-move-3 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(100px, -50px, 0); }
+  66% { transform: translate3d(-100px, 50px, 0); }
+}
+
+/* Hero scroll indicator — Pure CSS instead of Framer Motion infinite */
+.scroll-indicator-line {
+  will-change: transform;
+  animation: scroll-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
 }
