@@ -1,3 +1,5 @@
+'use client';
+
 import Navbar from '@/components/ui/Navbar';
 import Footer from '@/components/ui/Footer';
 import Hero from '@/components/sections/Hero';
@@ -9,7 +11,7 @@ import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-between overflow-x-hidden pt-20">
+    <main className="relative min-h-screen flex flex-col items-center justify-between overflow-x-hidden pt-20 dark:bg-dark-bg transition-colors duration-500">
       <Navbar />
       
       <div className="w-full flex-grow flex flex-col items-center gap-10 lg:gap-20">

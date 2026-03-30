@@ -22,7 +22,7 @@ const highlights = [
     icon: <FlaskConical className="w-6 h-6" />,
     label: "Currently Learning",
     detail: "AI Integration",
-    color: "text-accent-dark",
+    color: "text-accent-dark dark:text-accent",
     bgColor: "bg-accent/10",
   },
   {
@@ -72,14 +72,16 @@ export default function About() {
           <motion.div
             key={item.label}
             variants={itemVariants}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
             className="warm-card p-5 flex flex-col items-start gap-3"
           >
-            <div className={`w-11 h-11 rounded-xl ${item.bgColor} flex items-center justify-center ${item.color}`}>
+            <div className={`w-11 h-11 rounded-xl ${item.bgColor} flex items-center justify-center ${item.color} transition-transform duration-300`}>
               {item.icon}
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-foreground/50 font-medium mb-1">{item.label}</p>
-              <p className="text-base font-semibold text-foreground font-outfit">{item.detail}</p>
+              <p className="text-xs uppercase tracking-wider text-foreground/50 dark:text-dark-text/50 font-medium mb-1">{item.label}</p>
+              <p className="text-base font-semibold text-foreground dark:text-dark-text font-outfit">{item.detail}</p>
             </div>
           </motion.div>
         ))}
@@ -92,12 +94,12 @@ export default function About() {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="warm-card p-6 md:p-8"
       >
-        <h3 className="text-lg font-bold font-outfit mb-5 text-foreground">Core Expertise</h3>
+        <h3 className="text-lg font-bold font-outfit mb-5 text-foreground dark:text-dark-text">Core Expertise</h3>
         <div className="grid md:grid-cols-3 gap-4">
           {expertise.map((item) => (
-            <div key={item.text} className="flex items-center gap-3 py-3 px-4 rounded-xl bg-background/80 border border-foreground/[0.04]">
-              <span className="text-primary shrink-0">{item.icon}</span>
-              <span className="text-sm font-medium text-foreground/80">{item.text}</span>
+            <div key={item.text} className="flex items-center gap-3 py-3 px-4 rounded-xl bg-background/80 dark:bg-dark-bg/50 border border-foreground/[0.04] dark:border-dark-text/[0.04] hover:border-primary/20 transition-all duration-300 group">
+              <span className="text-primary shrink-0 group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
+              <span className="text-sm font-medium text-foreground/80 dark:text-dark-text/80">{item.text}</span>
             </div>
           ))}
         </div>

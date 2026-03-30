@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from '@/lib/ThemeContext';
 import CustomCursor from '@/components/ui/CustomCursor';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
@@ -20,14 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} font-sans`}>
-        <AnimatedBackground />
-        <CustomCursor />
-        <ScrollProgress />
-        <PageTransition>
-          {children}
-        </PageTransition>
+        <ThemeProvider>
+          <AnimatedBackground />
+          <CustomCursor />
+          <ScrollProgress />
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </ThemeProvider>
       </body>
     </html>
   );

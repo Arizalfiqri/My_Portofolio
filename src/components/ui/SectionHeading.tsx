@@ -10,12 +10,12 @@ export default function SectionHeading({ title, subtitle, className = '' }: { ti
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold font-outfit mb-4 text-foreground relative inline-block">
+        <h2 className="text-4xl md:text-5xl font-bold font-outfit mb-4 text-foreground dark:text-dark-text relative inline-block">
           {title}
-          <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-12 h-[3px] bg-primary rounded-full" />
+          <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-12 h-[3px] bg-gradient-to-r from-primary to-accent rounded-full" />
         </h2>
         {subtitle && (
-          <p className="text-foreground/50 text-lg mt-8">{subtitle}</p>
+          <p className="text-foreground/50 dark:text-dark-text/50 text-lg mt-8">{subtitle}</p>
         )}
       </motion.div>
     </div>

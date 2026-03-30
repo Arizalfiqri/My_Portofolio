@@ -18,11 +18,13 @@ export default function CustomCursor() {
     dotPos.current.x += (mousePos.current.x - dotPos.current.x) * 0.35;
     dotPos.current.y += (mousePos.current.y - dotPos.current.y) * 0.35;
 
+    const isDark = document.documentElement.classList.contains('dark');
+
     if (outerRef.current) {
       outerRef.current.style.transform = `translate3d(${outerPos.current.x - 16}px, ${outerPos.current.y - 16}px, 0) scale(${isHovering.current ? 1.5 : 1})`;
       outerRef.current.style.borderColor = isHovering.current
         ? 'rgba(200, 75, 49, 0.6)'
-        : 'rgba(45, 49, 66, 0.25)';
+        : isDark ? 'rgba(226, 232, 240, 0.2)' : 'rgba(45, 49, 66, 0.25)';
       outerRef.current.style.backgroundColor = isHovering.current
         ? 'rgba(200, 75, 49, 0.06)'
         : 'transparent';

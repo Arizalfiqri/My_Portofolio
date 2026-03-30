@@ -11,8 +11,19 @@
     --accent: #D4A574;
   }
 
+  .dark {
+    --background: #121212;
+    --foreground: #E2E8F0;
+  }
+
   body {
     @apply bg-background text-foreground overflow-x-hidden antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  .dark body {
+    background-color: #121212;
+    color: #E2E8F0;
   }
 
   /* Custom cursor only on desktop */
@@ -27,6 +38,10 @@
   ::selection {
     @apply bg-primary/15 text-primary-dark;
   }
+  .dark ::selection {
+    background: rgba(200, 75, 49, 0.25);
+    color: #E07A5F;
+  }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
@@ -35,8 +50,21 @@
   ::-webkit-scrollbar-track {
     @apply bg-background;
   }
+  .dark ::-webkit-scrollbar-track {
+    background: #121212;
+  }
   ::-webkit-scrollbar-thumb {
-    @apply bg-foreground/15 rounded-full hover:bg-foreground/25 transition-colors;
+    @apply bg-foreground/15 rounded-full;
+    transition: background-color 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-foreground/25;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(226, 232, 240, 0.15);
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(226, 232, 240, 0.3);
   }
 }
 
@@ -45,66 +73,158 @@
     text-wrap: balance;
   }
 
+  /* --- GLASS EFFECTS --- */
   .glass {
     @apply bg-white/60 backdrop-blur-md border border-foreground/[0.06];
+  }
+  .dark .glass {
+    background: rgba(31, 41, 55, 0.6);
+    border-color: rgba(226, 232, 240, 0.08);
   }
 
   .glass-card {
     @apply bg-card border border-card-border backdrop-blur-sm rounded-2xl shadow-card;
   }
+  .dark .glass-card {
+    background: rgba(31, 41, 55, 0.7);
+    border-color: rgba(226, 232, 240, 0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+  }
 
   .glass-card:hover {
     @apply shadow-card-hover;
+  }
+  .dark .glass-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 4px 10px rgba(0,0,0,0.3);
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
   }
 
+  /* --- WARM CARD WITH DEPTH & MICRO-INTERACTIONS --- */
   .warm-card {
-    @apply bg-white/80 border border-foreground/[0.06] rounded-2xl shadow-card backdrop-blur-sm;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    @apply bg-white/80 border border-foreground/[0.06] rounded-2xl backdrop-blur-sm;
+    box-shadow: 0 1px 3px rgba(45,49,66,0.04), 0 4px 12px rgba(45,49,66,0.06), 0 10px 30px rgba(0,0,0,0.03);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+  .dark .warm-card {
+    background: rgba(31, 41, 55, 0.65);
+    border-color: rgba(226, 232, 240, 0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.15);
   }
 
   .warm-card:hover {
-    @apply shadow-card-hover;
-    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45,49,66,0.1), 0 4px 10px rgba(45,49,66,0.06), 0 20px 50px rgba(0,0,0,0.06);
+    transform: translateY(-4px);
+    border-color: rgba(200, 75, 49, 0.12);
+  }
+  .dark .warm-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 4px 10px rgba(0,0,0,0.3), 0 0 20px rgba(200,75,49,0.06);
+    border-color: rgba(200, 75, 49, 0.15);
   }
 }
 
-/* Subtle background shapes — Pure CSS */
-.bg-shape-1 {
+/* =========================================
+   ANIMATED BACKGROUND BLOBS 
+   ========================================= */
+.blob-1 {
   will-change: transform;
-  animation: shape-move-1 20s ease-in-out infinite;
+  animation: blob-move-1 18s ease-in-out infinite;
 }
-.bg-shape-2 {
+.blob-2 {
   will-change: transform;
-  animation: shape-move-2 25s ease-in-out infinite;
+  animation: blob-move-2 22s ease-in-out infinite;
 }
-.bg-shape-3 {
+.blob-3 {
   will-change: transform;
-  animation: shape-move-3 22s ease-in-out infinite;
+  animation: blob-move-3 25s ease-in-out infinite;
 }
 
-@keyframes shape-move-1 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(30px, 50px, 0); }
-  66% { transform: translate3d(-30px, -25px, 0); }
+@keyframes blob-move-1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(60px, 80px, 0) scale(1.1) rotate(15deg);
+  }
+  50% {
+    transform: translate3d(-40px, 120px, 0) scale(0.95) rotate(-10deg);
+  }
+  75% {
+    transform: translate3d(80px, -30px, 0) scale(1.05) rotate(20deg);
+  }
 }
 
-@keyframes shape-move-2 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(-50px, 30px, 0); }
-  66% { transform: translate3d(30px, -50px, 0); }
+@keyframes blob-move-2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(-70px, 50px, 0) scale(1.08) rotate(-20deg);
+  }
+  50% {
+    transform: translate3d(50px, -80px, 0) scale(0.92) rotate(15deg);
+  }
+  75% {
+    transform: translate3d(-30px, -50px, 0) scale(1.12) rotate(-5deg);
+  }
 }
 
-@keyframes shape-move-3 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(40px, -30px, 0); }
-  66% { transform: translate3d(-40px, 30px, 0); }
+@keyframes blob-move-3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(50px, -60px, 0) scale(1.06) rotate(10deg);
+  }
+  50% {
+    transform: translate3d(-80px, 40px, 0) scale(0.94) rotate(-15deg);
+  }
+  75% {
+    transform: translate3d(70px, 50px, 0) scale(1.1) rotate(25deg);
+  }
 }
 
-/* Hero scroll indicator */
+/* Dark mode blob adjustments — reduce opacity */
+.dark .blob-1,
+.dark .blob-2,
+.dark .blob-3 {
+  opacity: 0.5;
+}
+
+/* =========================================
+   HERO FLOATING TECH ICONS 
+   ========================================= */
+.float-icon {
+  will-change: transform;
+  animation: icon-float 6s ease-in-out infinite;
+}
+.float-icon-delayed {
+  animation-delay: -2s;
+}
+.float-icon-slow {
+  animation-duration: 8s;
+}
+.float-icon-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-2deg);
+  }
+}
+
+/* =========================================
+   HERO SCROLL INDICATOR 
+   ========================================= */
 .scroll-indicator-line {
   will-change: transform;
   animation: scroll-bounce 1.5s ease-in-out infinite;
@@ -113,4 +233,52 @@
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
+}
+
+/* =========================================
+   MICRO-INTERACTION: SKILL ICON GRAYSCALE
+   ========================================= */
+.skill-icon-grayscale {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+.skill-icon-grayscale:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* =========================================
+   BUTTON MICRO-INTERACTIONS 
+   ========================================= */
+.btn-interactive {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease;
+}
+.btn-interactive:hover {
+  filter: brightness(1.08);
+}
+.btn-interactive:active {
+  transform: scale(0.96) !important;
+}
+
+/* =========================================
+   DARK MODE THEME TOGGLE ANIMATION 
+   ========================================= */
+.theme-toggle-icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+}
+
+/* =========================================
+   GRADIENT ACCENT BUTTON
+   ========================================= */
+.gradient-btn {
+  background: linear-gradient(135deg, #C84B31 0%, #E07A5F 50%, #D4A574 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

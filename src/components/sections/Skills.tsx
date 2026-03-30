@@ -55,14 +55,14 @@ const accentMap: Record<string, { border: string; bg: string; text: string; hove
   secondary: {
     border: 'border-secondary/15',
     bg: 'bg-secondary/5',
-    text: 'text-secondary-dark',
+    text: 'text-secondary-dark dark:text-secondary-light',
     hoverBg: 'hover:bg-secondary/8',
     tagBg: 'bg-secondary/10',
   },
   accent: {
     border: 'border-accent/20',
     bg: 'bg-accent/5',
-    text: 'text-accent-dark',
+    text: 'text-accent-dark dark:text-accent',
     hoverBg: 'hover:bg-accent/10',
     tagBg: 'bg-accent/10',
   },
@@ -106,16 +106,16 @@ export default function Skills() {
                   {group.title}
                 </div>
               </div>
-              <p className="text-sm text-foreground/50 mb-5">{group.description}</p>
+              <p className="text-sm text-foreground/50 dark:text-dark-text/50 mb-5">{group.description}</p>
 
               <div className="flex flex-wrap gap-2.5">
                 {group.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl border ${colors.border} ${colors.bg} ${colors.hoverBg} transition-colors cursor-default`}
+                    className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl border ${colors.border} ${colors.bg} ${colors.hoverBg} transition-all duration-300 cursor-default group/skill hover:scale-105`}
                   >
-                    <span className={`${colors.text} shrink-0`}>{skill.icon}</span>
-                    <span className="text-sm font-medium text-foreground/80">{skill.name}</span>
+                    <span className={`${colors.text} shrink-0 grayscale group-hover/skill:grayscale-0 transition-all duration-300`}>{skill.icon}</span>
+                    <span className="text-sm font-medium text-foreground/80 dark:text-dark-text/80">{skill.name}</span>
                   </div>
                 ))}
               </div>

@@ -51,8 +51,8 @@ export default function ProjectCard({
 
   const categoryColors: Record<string, string> = {
     'Web App': 'bg-primary/10 text-primary border-primary/20',
-    'Mobile App': 'bg-secondary/10 text-secondary-dark border-secondary/20',
-    'Research': 'bg-accent/10 text-accent-dark border-accent/20',
+    'Mobile App': 'bg-secondary/10 text-secondary-dark dark:text-secondary-light border-secondary/20',
+    'Research': 'bg-accent/10 text-accent-dark dark:text-accent border-accent/20',
   };
 
   return (
@@ -76,7 +76,7 @@ export default function ProjectCard({
         {/* Header */}
         <div className="p-6 pb-0">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold font-outfit text-foreground">{title}</h3>
+            <h3 className="text-xl font-bold font-outfit text-foreground dark:text-dark-text">{title}</h3>
             <span className={`px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider border ${categoryColors[category] || 'bg-foreground/5 text-foreground/60 border-foreground/10'}`}>
               {category}
             </span>
@@ -93,7 +93,7 @@ export default function ProjectCard({
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">Problem</p>
-              <p className="text-sm text-foreground/60 leading-relaxed">{problem}</p>
+              <p className="text-sm text-foreground/60 dark:text-dark-text/60 leading-relaxed">{problem}</p>
             </div>
           </div>
 
@@ -104,8 +104,8 @@ export default function ProjectCard({
               </div>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-secondary font-semibold mb-1">Solution</p>
-              <p className="text-sm text-foreground/60 leading-relaxed">{solution}</p>
+              <p className="text-xs uppercase tracking-wider text-secondary dark:text-secondary-light font-semibold mb-1">Solution</p>
+              <p className="text-sm text-foreground/60 dark:text-dark-text/60 leading-relaxed">{solution}</p>
             </div>
           </div>
         </div>
@@ -114,25 +114,25 @@ export default function ProjectCard({
         <div className="p-6 pt-5 mt-auto">
           <div className="flex flex-wrap gap-1.5 mb-5">
             {techStack.map((tech) => (
-              <span key={tech} className="px-2.5 py-1 text-[11px] uppercase tracking-wider font-medium rounded-lg bg-foreground/[0.04] text-foreground/50 border border-foreground/[0.06]">
+              <span key={tech} className="px-2.5 py-1 text-[11px] uppercase tracking-wider font-medium rounded-lg bg-foreground/[0.04] dark:bg-dark-text/[0.06] text-foreground/50 dark:text-dark-text/50 border border-foreground/[0.06] dark:border-dark-text/[0.06] hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-300">
                 {tech}
               </span>
             ))}
           </div>
           
-          <div className="flex items-center gap-4 pt-4 border-t border-foreground/[0.06]">
+          <div className="flex items-center gap-4 pt-4 border-t border-foreground/[0.06] dark:border-dark-text/[0.06]">
             {link && (
-              <a href={link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition-colors cursor-hover font-medium">
+              <a href={link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition-colors cursor-hover font-medium btn-interactive">
                 <ExternalLink size={15} /> Live Demo
               </a>
             )}
             {github && (
-              <a href={github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground transition-colors cursor-hover font-medium">
+              <a href={github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-foreground/50 dark:text-dark-text/50 hover:text-foreground dark:hover:text-dark-text transition-colors cursor-hover font-medium btn-interactive">
                 <Github size={15} /> Source Code
               </a>
             )}
             {!link && !github && (
-              <span className="flex items-center gap-2 text-sm text-foreground/35 italic font-medium">
+              <span className="flex items-center gap-2 text-sm text-foreground/35 dark:text-dark-text/35 italic font-medium">
                 Internal Project
               </span>
             )}

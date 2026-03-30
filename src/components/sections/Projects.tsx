@@ -68,7 +68,7 @@ export default function Projects() {
       </motion.div>
 
       <div className="mt-16 text-center">
-        <a href="https://github.com" target="_blank" rel="noreferrer" className="inline-block px-8 py-4 border-2 border-foreground/10 text-foreground/70 hover:text-primary rounded-full font-semibold hover:border-primary/30 hover:bg-primary/5 transition-all warm-card">
+        <a href="https://github.com" target="_blank" rel="noreferrer" className="inline-block px-8 py-4 border-2 border-foreground/10 dark:border-dark-text/10 text-foreground/70 dark:text-dark-text/70 hover:text-primary rounded-full font-semibold hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all btn-interactive warm-card">
           View All on GitHub
         </a>
       </div>
