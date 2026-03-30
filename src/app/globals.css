@@ -4,8 +4,11 @@
 
 @layer base {
   :root {
-    --background: #05050A;
-    --foreground: #f0f0f0;
+    --background: #F7F5F0;
+    --foreground: #2D3142;
+    --primary: #C84B31;
+    --secondary: #7C9885;
+    --accent: #D4A574;
   }
 
   body {
@@ -22,18 +25,18 @@
 
   /* Custom Selection */
   ::selection {
-    @apply bg-primary/30 text-white;
+    @apply bg-primary/15 text-primary-dark;
   }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-[#05050A];
+    @apply bg-background;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-card-border rounded-full hover:bg-card-hover transition-colors;
+    @apply bg-foreground/15 rounded-full hover:bg-foreground/25 transition-colors;
   }
 }
 
@@ -41,50 +44,67 @@
   .text-balance {
     text-wrap: balance;
   }
+
   .glass {
-    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.08];
+    @apply bg-white/60 backdrop-blur-md border border-foreground/[0.06];
   }
+
   .glass-card {
-    @apply bg-card border border-card-border backdrop-blur-sm rounded-2xl;
+    @apply bg-card border border-card-border backdrop-blur-sm rounded-2xl shadow-card;
   }
+
+  .glass-card:hover {
+    @apply shadow-card-hover;
+  }
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+
+  .warm-card {
+    @apply bg-white/80 border border-foreground/[0.06] rounded-2xl shadow-card backdrop-blur-sm;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .warm-card:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-2px);
   }
 }
 
-/* Aurora Background Blob Animations — Pure CSS, zero JS */
-.aurora-blob-1 {
+/* Subtle background shapes — Pure CSS */
+.bg-shape-1 {
   will-change: transform;
-  animation: aurora-move-1 15s ease-in-out infinite;
+  animation: shape-move-1 20s ease-in-out infinite;
 }
-.aurora-blob-2 {
+.bg-shape-2 {
   will-change: transform;
-  animation: aurora-move-2 20s ease-in-out infinite;
+  animation: shape-move-2 25s ease-in-out infinite;
 }
-.aurora-blob-3 {
+.bg-shape-3 {
   will-change: transform;
-  animation: aurora-move-3 18s ease-in-out infinite;
+  animation: shape-move-3 22s ease-in-out infinite;
 }
 
-@keyframes aurora-move-1 {
+@keyframes shape-move-1 {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(50px, 100px, 0); }
-  66% { transform: translate3d(-50px, -50px, 0); }
+  33% { transform: translate3d(30px, 50px, 0); }
+  66% { transform: translate3d(-30px, -25px, 0); }
 }
 
-@keyframes aurora-move-2 {
+@keyframes shape-move-2 {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(-100px, 50px, 0); }
-  66% { transform: translate3d(50px, -100px, 0); }
+  33% { transform: translate3d(-50px, 30px, 0); }
+  66% { transform: translate3d(30px, -50px, 0); }
 }
 
-@keyframes aurora-move-3 {
+@keyframes shape-move-3 {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(100px, -50px, 0); }
-  66% { transform: translate3d(-100px, 50px, 0); }
+  33% { transform: translate3d(40px, -30px, 0); }
+  66% { transform: translate3d(-40px, 30px, 0); }
 }
 
-/* Hero scroll indicator — Pure CSS instead of Framer Motion infinite */
+/* Hero scroll indicator */
 .scroll-indicator-line {
   will-change: transform;
   animation: scroll-bounce 1.5s ease-in-out infinite;

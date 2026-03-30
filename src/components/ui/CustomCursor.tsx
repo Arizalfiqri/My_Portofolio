@@ -12,21 +12,19 @@ export default function CustomCursor() {
   const isVisible = useRef(false);
 
   const animate = useCallback(() => {
-    // Smooth lerp for outer ring (slower follow)
     outerPos.current.x += (mousePos.current.x - outerPos.current.x) * 0.15;
     outerPos.current.y += (mousePos.current.y - outerPos.current.y) * 0.15;
 
-    // Faster lerp for inner dot
     dotPos.current.x += (mousePos.current.x - dotPos.current.x) * 0.35;
     dotPos.current.y += (mousePos.current.y - dotPos.current.y) * 0.35;
 
     if (outerRef.current) {
       outerRef.current.style.transform = `translate3d(${outerPos.current.x - 16}px, ${outerPos.current.y - 16}px, 0) scale(${isHovering.current ? 1.5 : 1})`;
       outerRef.current.style.borderColor = isHovering.current
-        ? 'rgba(6, 182, 212, 0.8)'
-        : 'rgba(59, 130, 246, 0.5)';
+        ? 'rgba(200, 75, 49, 0.6)'
+        : 'rgba(45, 49, 66, 0.25)';
       outerRef.current.style.backgroundColor = isHovering.current
-        ? 'rgba(59, 130, 246, 0.1)'
+        ? 'rgba(200, 75, 49, 0.06)'
         : 'transparent';
     }
 
@@ -38,7 +36,6 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    // Skip on touch devices or narrow screens
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     const isNarrow = window.matchMedia('(max-width: 767px)').matches;
     if (isTouchDevice || isNarrow) return;
@@ -74,7 +71,6 @@ export default function CustomCursor() {
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
     document.documentElement.addEventListener('mouseleave', handleMouseLeave);
 
-    // Start animation loop
     rafId.current = requestAnimationFrame(animate);
 
     return () => {
@@ -89,17 +85,17 @@ export default function CustomCursor() {
     <>
       <div
         ref={outerRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[100] mix-blend-screen hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[100] hidden md:block"
         style={{
           opacity: 0,
           willChange: 'transform',
           transition: 'border-color 0.2s, background-color 0.2s, opacity 0.3s',
-          borderColor: 'rgba(59, 130, 246, 0.5)',
+          borderColor: 'rgba(45, 49, 66, 0.25)',
         }}
       />
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent pointer-events-none z-[100] hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[100] hidden md:block"
         style={{
           opacity: 0,
           willChange: 'transform',

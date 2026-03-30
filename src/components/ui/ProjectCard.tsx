@@ -1,21 +1,20 @@
 'use client';
 import { useMotionValue, useSpring, useTransform, motion } from 'framer-motion';
-import { ExternalLink, Code2 as Github } from 'lucide-react';
-import Image from 'next/image';
+import { ExternalLink, Code2 as Github, Lightbulb, Wrench } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface ProjectCardProps {
   title: string;
-  description: string;
+  problem: string;
+  solution: string;
   category: string;
   techStack: string[];
   link?: string;
   github?: string;
-  imageUrl?: string;
 }
 
 export default function ProjectCard({
-  title, description, category, techStack, link, github, imageUrl
+  title, problem, solution, category, techStack, link, github
 }: ProjectCardProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -26,8 +25,8 @@ export default function ProjectCard({
   const mouseXSpring = useSpring(x, { stiffness: 200, damping: 20 });
   const mouseYSpring = useSpring(y, { stiffness: 200, damping: 20 });
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["3deg", "-3deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-3deg", "3deg"]);
 
   useEffect(() => {
     setIsTouchDevice(
@@ -50,6 +49,12 @@ export default function ProjectCard({
     y.set(0);
   };
 
+  const categoryColors: Record<string, string> = {
+    'Web App': 'bg-primary/10 text-primary border-primary/20',
+    'Mobile App': 'bg-secondary/10 text-secondary-dark border-secondary/20',
+    'Research': 'bg-accent/10 text-accent-dark border-accent/20',
+  };
+
   return (
     <motion.div
       ref={cardRef}
@@ -65,54 +70,69 @@ export default function ProjectCard({
       }
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full rounded-2xl cursor-pointer group h-full"
+      className="relative w-full cursor-pointer group h-full"
     >
-      <div 
-        style={{ transform: "translateZ(50px)" }}
-        className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"
-      />
-      
-      <div className="glass-card flex flex-col h-full overflow-hidden border border-white/10 group-hover:border-primary/50 transition-colors duration-500">
-        
-        {/* Project Image Placeholder */}
-        <div className="relative w-full h-48 bg-white/5 overflow-hidden">
-          {imageUrl ? (
-            <Image src={imageUrl} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-foreground/30 font-medium font-outfit text-sm tracking-widest uppercase">
-              Project Preview
-            </div>
-          )}
-          <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-semibold text-primary uppercase border border-primary/20">
-            {category}
+      <div className="warm-card flex flex-col h-full overflow-hidden">
+        {/* Header */}
+        <div className="p-6 pb-0">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold font-outfit text-foreground">{title}</h3>
+            <span className={`px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider border ${categoryColors[category] || 'bg-foreground/5 text-foreground/60 border-foreground/10'}`}>
+              {category}
+            </span>
           </div>
         </div>
 
-        <div className="p-6 flex flex-col flex-grow">
-          <h3 className="text-2xl font-bold font-outfit text-white mb-2">{title}</h3>
-          <p className="text-foreground/70 text-sm mb-6 flex-grow leading-relaxed">{description}</p>
-          
-          <div className="flex flex-wrap gap-2 mb-6">
+        {/* Problem / Solution */}
+        <div className="px-6 space-y-4 flex-grow">
+          <div className="flex gap-3">
+            <div className="shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-lg bg-primary/8 flex items-center justify-center">
+                <Lightbulb className="w-4 h-4 text-primary" />
+              </div>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">Problem</p>
+              <p className="text-sm text-foreground/60 leading-relaxed">{problem}</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <div className="shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-lg bg-secondary/8 flex items-center justify-center">
+                <Wrench className="w-4 h-4 text-secondary" />
+              </div>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wider text-secondary font-semibold mb-1">Solution</p>
+              <p className="text-sm text-foreground/60 leading-relaxed">{solution}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack + Links */}
+        <div className="p-6 pt-5 mt-auto">
+          <div className="flex flex-wrap gap-1.5 mb-5">
             {techStack.map((tech) => (
-              <span key={tech} className="px-2 py-1 text-[10px] uppercase tracking-wider rounded-md bg-white/5 text-foreground/60 border border-white/10">
+              <span key={tech} className="px-2.5 py-1 text-[11px] uppercase tracking-wider font-medium rounded-lg bg-foreground/[0.04] text-foreground/50 border border-foreground/[0.06]">
                 {tech}
               </span>
             ))}
           </div>
           
-          <div className="flex items-center gap-4 mt-auto pt-4 border-t border-white/10">
+          <div className="flex items-center gap-4 pt-4 border-t border-foreground/[0.06]">
             {link && (
-              <a href={link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-primary hover:text-white transition-colors cursor-hover">
-                <ExternalLink size={16} /> Live Demo
+              <a href={link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition-colors cursor-hover font-medium">
+                <ExternalLink size={15} /> Live Demo
               </a>
             )}
             {github && (
-              <a href={github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-white transition-colors cursor-hover">
-                <Github size={16} /> Source Code
+              <a href={github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground transition-colors cursor-hover font-medium">
+                <Github size={15} /> Source Code
               </a>
             )}
             {!link && !github && (
-              <span className="flex items-center gap-2 text-sm text-foreground/40 italic">
+              <span className="flex items-center gap-2 text-sm text-foreground/35 italic font-medium">
                 Internal Project
               </span>
             )}

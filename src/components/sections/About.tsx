@@ -1,10 +1,46 @@
 'use client';
 import { motion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { GraduationCap, Globe, FlaskConical, Rocket, Code2, Smartphone } from 'lucide-react';
+
+const highlights = [
+  {
+    icon: <GraduationCap className="w-6 h-6" />,
+    label: "IT Student",
+    detail: "Semester 5",
+    color: "text-primary",
+    bgColor: "bg-primary/8",
+  },
+  {
+    icon: <Globe className="w-6 h-6" />,
+    label: "Focus",
+    detail: "Web & Mobile Systems",
+    color: "text-secondary",
+    bgColor: "bg-secondary/8",
+  },
+  {
+    icon: <FlaskConical className="w-6 h-6" />,
+    label: "Currently Learning",
+    detail: "AI Integration",
+    color: "text-accent-dark",
+    bgColor: "bg-accent/10",
+  },
+  {
+    icon: <Rocket className="w-6 h-6" />,
+    label: "Passion",
+    detail: "Building scalable apps",
+    color: "text-primary",
+    bgColor: "bg-primary/8",
+  },
+];
+
+const expertise = [
+  { icon: <Code2 className="w-5 h-5" />, text: "Full-Stack Web Development" },
+  { icon: <Smartphone className="w-5 h-5" />, text: "Native Android Development" },
+  { icon: <Globe className="w-5 h-5" />, text: "System Design & Architecture" },
+];
 
 export default function About() {
-  const tags = ["Web Development", "Mobile Development", "AI Enthusiast", "System Design"];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,56 +61,47 @@ export default function About() {
     <section id="about" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-7xl mx-auto">
       <SectionHeading title="About Me" />
 
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="space-y-6 text-foreground/80 font-inter text-lg leading-relaxed"
-        >
-          <motion.p variants={itemVariants}>
-            I am an Information Technology Systems student passionate about building digital systems through web and mobile technologies. I have experience in developing dynamic applications using <span className="text-white font-medium">PHP, MySQL, JavaScript, Django, and CodeIgniter</span>.
-          </motion.p>
-          <motion.p variants={itemVariants}>
-            In addition to system development, I have a growing interest in <span className="text-white font-medium">Artificial Intelligence and Machine Learning</span>. I have worked on basic-level AI-related cases, including data collection, simple analysis, and understanding how AI tools impact digital literacy.
-          </motion.p>
-          <motion.p variants={itemVariants}>
-            My goal is to become a system-oriented developer who can integrate intelligent features into applications, combining software engineering with AI-driven solutions.
-          </motion.p>
-          <motion.p variants={itemVariants}>
-            I am continuously learning new technologies and improving my skills to build scalable, impactful, and intelligent systems.
-          </motion.p>
-        </motion.div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-10"
+      >
+        {highlights.map((item) => (
+          <motion.div
+            key={item.label}
+            variants={itemVariants}
+            className="warm-card p-5 flex flex-col items-start gap-3"
+          >
+            <div className={`w-11 h-11 rounded-xl ${item.bgColor} flex items-center justify-center ${item.color}`}>
+              {item.icon}
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wider text-foreground/50 font-medium mb-1">{item.label}</p>
+              <p className="text-base font-semibold text-foreground font-outfit">{item.detail}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative group p-8 glass-card"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 rounded-2xl pointer-events-none" />
-          
-          <h3 className="text-2xl font-bold font-outfit mb-6 text-white">Core Focus Areas</h3>
-          
-          <div className="flex flex-wrap gap-3 relative z-10">
-            {tags.map((tag) => (
-              <motion.span
-                key={tag}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/90 hover:bg-white/10 hover:border-primary/50 transition-colors shadow-[0_0_15px_rgba(0,0,0,0.2)]"
-              >
-                {tag}
-              </motion.span>
-            ))}
-          </div>
-          
-          <div className="mt-12">
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full animate-pulse-glow" />
-          </div>
-        </motion.div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="warm-card p-6 md:p-8"
+      >
+        <h3 className="text-lg font-bold font-outfit mb-5 text-foreground">Core Expertise</h3>
+        <div className="grid md:grid-cols-3 gap-4">
+          {expertise.map((item) => (
+            <div key={item.text} className="flex items-center gap-3 py-3 px-4 rounded-xl bg-background/80 border border-foreground/[0.04]">
+              <span className="text-primary shrink-0">{item.icon}</span>
+              <span className="text-sm font-medium text-foreground/80">{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }

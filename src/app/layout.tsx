@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
-  title: 'Arizal Fiqri | Portfolio',
-  description: 'System Developer & AI Enthusiast Portfolio',
+  title: 'Arizal Fiqri | System Developer',
+  description: 'System Developer focused on Web & Mobile applications. Building robust systems with modern technologies.',
 };
 
 export default function RootLayout({

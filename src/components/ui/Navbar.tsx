@@ -9,8 +9,8 @@ export default function Navbar() {
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'AI Interest', href: '#ai' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl md:text-2xl font-bold font-outfit text-white flex items-center gap-2 cursor-hover relative z-[60]"
+            className="text-xl md:text-2xl font-bold font-outfit text-foreground flex items-center gap-2 cursor-hover relative z-[60]"
           >
             <span className="text-primary">&lt;</span>
             Arizal Fiqri
@@ -46,10 +46,10 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm text-foreground/80 hover:text-white transition-colors cursor-hover relative group"
+                className="text-sm text-foreground/70 hover:text-primary transition-colors cursor-hover relative group font-medium"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
@@ -62,17 +62,17 @@ export default function Navbar() {
             aria-expanded={isMenuOpen}
           >
             <span
-              className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 ${
+              className={`block w-5 h-[2px] bg-foreground rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'rotate-45 translate-y-[4px]' : ''
               }`}
             />
             <span
-              className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 ${
+              className={`block w-5 h-[2px] bg-foreground rounded-full transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0 scale-0' : ''
               }`}
             />
             <span
-              className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 ${
+              className={`block w-5 h-[2px] bg-foreground rounded-full transition-all duration-300 ${
                 isMenuOpen ? '-rotate-45 -translate-y-[4px]' : ''
               }`}
             />
@@ -91,7 +91,7 @@ export default function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={closeMenu}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[45] md:hidden"
+              className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-[45] md:hidden"
             />
 
             {/* Mobile Menu Panel */}
@@ -100,7 +100,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="fixed top-[72px] left-4 right-4 z-[55] md:hidden glass rounded-2xl border border-white/10 overflow-hidden"
+              className="fixed top-[72px] left-4 right-4 z-[55] md:hidden glass rounded-2xl border border-foreground/[0.06] overflow-hidden"
             >
               <div className="flex flex-col py-4">
                 {navItems.map((item, idx) => (
@@ -113,7 +113,7 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       onClick={closeMenu}
-                      className="flex items-center px-6 py-4 text-base text-foreground/80 hover:text-white hover:bg-white/5 transition-colors active:bg-white/10"
+                      className="flex items-center px-6 py-4 text-base text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors active:bg-primary/10 font-medium"
                     >
                       <span className="text-primary mr-3 text-sm">0{idx + 1}.</span>
                       {item.name}

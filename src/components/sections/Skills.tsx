@@ -2,38 +2,71 @@
 'use client';
 import { motion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
+import {
+  Code2, Database, Globe, Smartphone,
+  Palette, Film, Layout, BrainCircuit,
+  BarChart3, FileCode2, Server, PenTool
+} from 'lucide-react';
 
-const skillCategories = [
+const skillGroups = [
   {
-    title: "Web & System Development",
-    skills: ["PHP (Native)", "MySQL", "JavaScript", "CodeIgniter 4", "Django"],
-    color: "from-blue-500/20 to-cyan-500/20",
-    border: "group-hover:border-blue-500/50"
-  },
-  {
-    title: "Mobile Development",
-    skills: ["Kotlin (Android)"],
-    color: "from-purple-500/20 to-pink-500/20",
-    border: "group-hover:border-purple-500/50"
-  },
-  {
-    title: "AI & Machine Learning",
+    title: "Core Stack",
+    description: "Technologies I build with daily",
+    accent: "primary",
     skills: [
-      "Machine Learning concepts",
-      "Data collection & preprocessing",
-      "AI tools usage & evaluation",
-      "AI impact on digital literacy"
+      { name: "PHP", icon: <FileCode2 className="w-5 h-5" /> },
+      { name: "MySQL", icon: <Database className="w-5 h-5" /> },
+      { name: "JavaScript", icon: <Code2 className="w-5 h-5" /> },
+      { name: "CodeIgniter", icon: <Server className="w-5 h-5" /> },
+      { name: "Django", icon: <Globe className="w-5 h-5" /> },
+      { name: "Kotlin", icon: <Smartphone className="w-5 h-5" /> },
     ],
-    color: "from-emerald-500/20 to-teal-500/20",
-    border: "group-hover:border-emerald-500/50"
   },
   {
-    title: "Creative & Supporting",
-    skills: ["UI/UX Design", "Graphic Design", "Video Editing"],
-    color: "from-orange-500/20 to-amber-500/20",
-    border: "group-hover:border-orange-500/50"
-  }
+    title: "Tools & Design",
+    description: "Supporting skills & creativity",
+    accent: "secondary",
+    skills: [
+      { name: "UI/UX Design", icon: <PenTool className="w-5 h-5" /> },
+      { name: "Graphic Design", icon: <Palette className="w-5 h-5" /> },
+      { name: "Video Editing", icon: <Film className="w-5 h-5" /> },
+      { name: "Responsive Layout", icon: <Layout className="w-5 h-5" /> },
+    ],
+  },
+  {
+    title: "Exploring",
+    description: "Currently learning & experimenting",
+    accent: "accent",
+    skills: [
+      { name: "Machine Learning", icon: <BrainCircuit className="w-5 h-5" /> },
+      { name: "Data Analysis", icon: <BarChart3 className="w-5 h-5" /> },
+    ],
+  },
 ];
+
+const accentMap: Record<string, { border: string; bg: string; text: string; hoverBg: string; tagBg: string }> = {
+  primary: {
+    border: 'border-primary/15',
+    bg: 'bg-primary/5',
+    text: 'text-primary',
+    hoverBg: 'hover:bg-primary/8',
+    tagBg: 'bg-primary/8',
+  },
+  secondary: {
+    border: 'border-secondary/15',
+    bg: 'bg-secondary/5',
+    text: 'text-secondary-dark',
+    hoverBg: 'hover:bg-secondary/8',
+    tagBg: 'bg-secondary/10',
+  },
+  accent: {
+    border: 'border-accent/20',
+    bg: 'bg-accent/5',
+    text: 'text-accent-dark',
+    hoverBg: 'hover:bg-accent/10',
+    tagBg: 'bg-accent/10',
+  },
+};
 
 export default function Skills() {
   const containerVars: any = {
@@ -45,41 +78,50 @@ export default function Skills() {
   };
 
   const itemVars: any = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
-    show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
     <section id="skills" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-7xl mx-auto">
-      <SectionHeading title="Technical Proficiency" subtitle="A categorized breakdown of my technical and supportive skills." />
+      <SectionHeading title="Technical Skills" subtitle="A visual breakdown of my technical proficiency and interests." />
 
       <motion.div
         variants={containerVars}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-50px" }}
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+        className="grid md:grid-cols-3 gap-6"
       >
-        {skillCategories.map((category) => (
-          <motion.div
-            key={category.title}
-            variants={itemVars}
-            className={`group relative glass-card p-6 border border-white/5 transition-all duration-500 ${category.border} hover:bg-white/5`}
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none`} />
-            
-            <h3 className="text-xl font-outfit font-bold mb-4 text-white relative z-10">{category.title}</h3>
-            
-            <ul className="space-y-3 relative z-10">
-              {category.skills.map((skill, i) => (
-                <li key={i} className="flex items-start text-foreground/80 text-sm">
-                  <span className="text-primary mr-2 mt-1 shrink-0">▹</span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+        {skillGroups.map((group) => {
+          const colors = accentMap[group.accent];
+          return (
+            <motion.div
+              key={group.title}
+              variants={itemVars}
+              className={`warm-card p-6 ${group.accent === 'accent' ? 'border-dashed' : ''}`}
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.tagBg} ${colors.text}`}>
+                  {group.title}
+                </div>
+              </div>
+              <p className="text-sm text-foreground/50 mb-5">{group.description}</p>
+
+              <div className="flex flex-wrap gap-2.5">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl border ${colors.border} ${colors.bg} ${colors.hoverBg} transition-colors cursor-default`}
+                  >
+                    <span className={`${colors.text} shrink-0`}>{skill.icon}</span>
+                    <span className="text-sm font-medium text-foreground/80">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
       </motion.div>
     </section>
   );

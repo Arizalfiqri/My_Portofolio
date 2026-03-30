@@ -9,42 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#05050A", // Very dark navy/black
-        foreground: "#f0f0f0",
+        background: "#F7F5F0", // warm cream
+        foreground: "#2D3142", // charcoal
         primary: {
-          DEFAULT: '#3b82f6', // blue-500
-          glow: 'rgba(59, 130, 246, 0.5)',
+          DEFAULT: '#C84B31', // terracotta
+          light: '#E07A5F',
+          dark: '#A33B24',
+          glow: 'rgba(200, 75, 49, 0.15)',
         },
         secondary: {
-          DEFAULT: '#8b5cf6', // violet-500
-          glow: 'rgba(139, 92, 246, 0.5)',
+          DEFAULT: '#7C9885', // sage green
+          light: '#A3BFA8',
+          dark: '#5A7A63',
+          glow: 'rgba(124, 152, 133, 0.15)',
         },
         accent: {
-          DEFAULT: '#06b6d4', // cyan-500
-          glow: 'rgba(6, 182, 212, 0.5)',
+          DEFAULT: '#D4A574', // warm gold
+          light: '#E8C9A0',
+          dark: '#B8895A',
         },
         card: {
-          DEFAULT: 'rgba(255, 255, 255, 0.03)',
-          border: 'rgba(255, 255, 255, 0.08)',
-          hover: 'rgba(255, 255, 255, 0.05)',
-        }
+          DEFAULT: 'rgba(255, 255, 255, 0.7)',
+          border: 'rgba(45, 49, 66, 0.08)',
+          hover: 'rgba(255, 255, 255, 0.9)',
+        },
+        muted: '#8D8D9B',
       },
-      backgroundImage: {
-        "aurora-gradient": "linear-gradient(to right, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        outfit: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'card': '0 1px 3px rgba(45,49,66,0.04), 0 4px 12px rgba(45,49,66,0.06)',
+        'card-hover': '0 4px 16px rgba(45,49,66,0.08), 0 8px 32px rgba(45,49,66,0.06)',
+        'warm': '0 8px 30px rgba(200,75,49,0.08)',
       },
       animation: {
-        'spin-slow': 'spin 8s linear infinite',
-        'pulse-glow': 'pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
-        'pulse-glow': {
-          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-          '50%': { opacity: '.7', transform: 'scale(1.05)' },
-        },
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-10px)' },
         }
       }
     },
