@@ -31,8 +31,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20 px-6 overflow-hidden">
-      {/* Floating Tech Icons */}
+    <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20 px-4 sm:px-6 overflow-hidden w-full">
+      {/* Floating Tech Icons — desktop only */}
       {floatingIcons.map((icon) => (
         <motion.div
           key={icon.label}
@@ -50,7 +50,7 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl mx-auto text-center relative z-10"
+        className="max-w-3xl mx-auto text-center relative z-10 w-full"
       >
         <motion.div variants={itemVariants} className="inline-block mb-6">
           <span className="px-5 py-2 rounded-full border border-primary/20 bg-primary/5 dark:bg-primary/10 text-sm font-medium tracking-widest uppercase text-primary">
@@ -58,12 +58,18 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-bold font-outfit mb-6 leading-tight text-foreground dark:text-dark-text">
+        <motion.h1
+          variants={itemVariants}
+          className="heading-hero font-bold font-outfit mb-6 text-foreground dark:text-dark-text text-center"
+        >
           Building <span className="text-primary">Robust</span> Systems,<br />
           Exploring <span className="text-secondary dark:text-secondary-light">Intelligent</span> Solutions
         </motion.h1>
 
-        <motion.div variants={itemVariants} className="text-xl md:text-2xl text-foreground/60 dark:text-dark-text/60 mb-12 flex flex-col md:flex-row items-center justify-center gap-2 font-light">
+        <motion.div
+          variants={itemVariants}
+          className="text-subtitle text-foreground/60 dark:text-dark-text/60 mb-12 flex flex-col items-center justify-center gap-2 font-light text-center"
+        >
           <span>IT Student & System Developer focused on</span>
           <AnimatedText />
         </motion.div>

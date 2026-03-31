@@ -6,17 +6,17 @@ import { Send, Code2 as Github, Briefcase as Linkedin, Mail, MessageSquare as Tw
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-5xl mx-auto">
+    <section id="contact" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-5xl mx-auto">
       <SectionHeading title="Let&apos;s Connect" subtitle="Interested in working together or discussing web & mobile development?" />
 
-      <div className="grid md:grid-cols-2 gap-10 mt-16 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-12 md:mt-16 items-start">
         {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="warm-card p-8"
+          className="warm-card p-6 md:p-8"
         >
           <form className="space-y-5">
             <div className="space-y-2">
@@ -73,8 +73,8 @@ export default function Contact() {
           className="space-y-8"
         >
           <div className="space-y-3">
-            <h3 className="text-2xl font-bold font-outfit text-foreground dark:text-dark-text">Direct Contacts</h3>
-            <p className="text-foreground/55 dark:text-dark-text/55 leading-relaxed">
+            <h3 className="text-xl md:text-2xl font-bold font-outfit text-foreground dark:text-dark-text leading-tight">Direct Contacts</h3>
+            <p className="text-foreground/55 dark:text-dark-text/55 leading-relaxed text-sm md:text-base">
               Feel free to reach out via email or connect with me on professional platforms.
             </p>
           </div>
@@ -84,28 +84,28 @@ export default function Contact() {
               <div className="w-12 h-12 rounded-xl bg-primary/8 border border-primary/10 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-110 transition-all duration-300">
                 <Mail size={20} className="text-primary" />
               </div>
-              <span className="font-medium">hello@arizalfiqri.com</span>
+              <span className="font-medium text-sm md:text-base">hello@arizalfiqri.com</span>
             </a>
             
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-foreground/70 dark:text-dark-text/70 hover:text-secondary-dark dark:hover:text-secondary-light group cursor-hover transition-colors">
               <div className="w-12 h-12 rounded-xl bg-secondary/8 border border-secondary/10 flex items-center justify-center group-hover:bg-secondary/15 group-hover:scale-110 transition-all duration-300">
                 <Linkedin size={20} className="text-secondary" />
               </div>
-              <span className="font-medium">LinkedIn Profile</span>
+              <span className="font-medium text-sm md:text-base">LinkedIn Profile</span>
             </a>
             
             <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-foreground/70 dark:text-dark-text/70 hover:text-foreground dark:hover:text-dark-text group cursor-hover transition-colors">
               <div className="w-12 h-12 rounded-xl bg-foreground/5 dark:bg-dark-text/5 border border-foreground/[0.06] dark:border-dark-text/[0.06] flex items-center justify-center group-hover:bg-foreground/10 dark:group-hover:bg-dark-text/10 group-hover:scale-110 transition-all duration-300">
                 <Github size={20} className="text-foreground/70 dark:text-dark-text/70" />
               </div>
-              <span className="font-medium">GitHub Repository</span>
+              <span className="font-medium text-sm md:text-base">GitHub Repository</span>
             </a>
             
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-foreground/70 dark:text-dark-text/70 hover:text-accent-dark dark:hover:text-accent group cursor-hover transition-colors">
               <div className="w-12 h-12 rounded-xl bg-accent/8 border border-accent/10 flex items-center justify-center group-hover:bg-accent/15 group-hover:scale-110 transition-all duration-300">
                 <Twitter size={20} className="text-accent-dark dark:text-accent" />
               </div>
-              <span className="font-medium">Twitter / X</span>
+              <span className="font-medium text-sm md:text-base">Twitter / X</span>
             </a>
           </div>
         </motion.div>

@@ -15,7 +15,7 @@ export default function AnimatedText() {
   }, []);
 
   return (
-    <div className="relative inline-block w-[200px] md:w-[260px] text-left h-[1.2em]">
+    <div className="relative inline-flex justify-center w-auto min-w-[180px] md:min-w-[260px] h-[1.3em]">
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
@@ -23,7 +23,7 @@ export default function AnimatedText() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="absolute left-0 top-0 text-gradient font-bold"
+          className="absolute text-gradient font-bold whitespace-nowrap"
         >
           {words[index]}
         </motion.span>

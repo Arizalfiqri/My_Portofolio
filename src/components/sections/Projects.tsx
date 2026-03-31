@@ -50,7 +50,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-7xl mx-auto">
+    <section id="projects" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
       <SectionHeading title="Selected Works" subtitle="Featured projects showcasing problem-solving across Web, Mobile, and Research." />
 
       <motion.div
@@ -58,7 +58,7 @@ export default function Projects() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid md:grid-cols-2 gap-8 mt-16"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16"
       >
         {projectsData.map((project) => (
           <motion.div variants={itemVars} key={project.title}>
@@ -67,7 +67,7 @@ export default function Projects() {
         ))}
       </motion.div>
 
-      <div className="mt-16 text-center">
+      <div className="mt-12 md:mt-16 text-center">
         <a href="https://github.com" target="_blank" rel="noreferrer" className="inline-block px-8 py-4 border-2 border-foreground/10 dark:border-dark-text/10 text-foreground/70 dark:text-dark-text/70 hover:text-primary rounded-full font-semibold hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all btn-interactive warm-card">
           View All on GitHub
         </a>

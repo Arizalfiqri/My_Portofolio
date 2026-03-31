@@ -74,17 +74,17 @@ export default function ProjectCard({
     >
       <div className="warm-card flex flex-col h-full overflow-hidden">
         {/* Header */}
-        <div className="p-6 pb-0">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold font-outfit text-foreground dark:text-dark-text">{title}</h3>
-            <span className={`px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider border ${categoryColors[category] || 'bg-foreground/5 text-foreground/60 border-foreground/10'}`}>
+        <div className="p-5 md:p-6 pb-0">
+          <div className="flex items-start justify-between mb-4 gap-3">
+            <h3 className="text-lg md:text-xl font-bold font-outfit text-foreground dark:text-dark-text leading-tight">{title}</h3>
+            <span className={`px-2.5 py-1 rounded-full text-[10px] md:text-[11px] font-semibold uppercase tracking-wider border whitespace-nowrap shrink-0 ${categoryColors[category] || 'bg-foreground/5 text-foreground/60 border-foreground/10'}`}>
               {category}
             </span>
           </div>
         </div>
 
         {/* Problem / Solution */}
-        <div className="px-6 space-y-4 flex-grow">
+        <div className="px-5 md:px-6 space-y-4 flex-grow">
           <div className="flex gap-3">
             <div className="shrink-0 mt-0.5">
               <div className="w-7 h-7 rounded-lg bg-primary/8 flex items-center justify-center">
@@ -111,10 +111,10 @@ export default function ProjectCard({
         </div>
 
         {/* Tech Stack + Links */}
-        <div className="p-6 pt-5 mt-auto">
+        <div className="p-5 md:p-6 pt-5 mt-auto">
           <div className="flex flex-wrap gap-1.5 mb-5">
             {techStack.map((tech) => (
-              <span key={tech} className="px-2.5 py-1 text-[11px] uppercase tracking-wider font-medium rounded-lg bg-foreground/[0.04] dark:bg-dark-text/[0.06] text-foreground/50 dark:text-dark-text/50 border border-foreground/[0.06] dark:border-dark-text/[0.06] hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-300">
+              <span key={tech} className="px-2.5 py-1 text-[10px] md:text-[11px] uppercase tracking-wider font-medium rounded-lg bg-foreground/[0.04] dark:bg-dark-text/[0.06] text-foreground/50 dark:text-dark-text/50 border border-foreground/[0.06] dark:border-dark-text/[0.06] hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-300">
                 {tech}
               </span>
             ))}

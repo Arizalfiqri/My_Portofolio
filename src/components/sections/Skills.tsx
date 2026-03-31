@@ -83,7 +83,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-7xl mx-auto">
+    <section id="skills" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
       <SectionHeading title="Technical Skills" subtitle="A visual breakdown of my technical proficiency and interests." />
 
       <motion.div
@@ -91,7 +91,7 @@ export default function Skills() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-50px" }}
-        className="grid md:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
       >
         {skillGroups.map((group) => {
           const colors = accentMap[group.accent];
@@ -99,14 +99,14 @@ export default function Skills() {
             <motion.div
               key={group.title}
               variants={itemVars}
-              className={`warm-card p-6 ${group.accent === 'accent' ? 'border-dashed' : ''}`}
+              className={`warm-card p-5 md:p-6 ${group.accent === 'accent' ? 'border-dashed' : ''}`}
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.tagBg} ${colors.text}`}>
                   {group.title}
                 </div>
               </div>
-              <p className="text-sm text-foreground/50 dark:text-dark-text/50 mb-5">{group.description}</p>
+              <p className="text-sm text-foreground/50 dark:text-dark-text/50 mb-5 leading-relaxed">{group.description}</p>
 
               <div className="flex flex-wrap gap-2.5">
                 {group.skills.map((skill) => (

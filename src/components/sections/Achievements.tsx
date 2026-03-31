@@ -40,7 +40,7 @@ export default function Achievements() {
   };
 
   return (
-    <section id="achievements" className="py-24 px-6 md:px-12 relative z-10 w-full max-w-7xl mx-auto">
+    <section id="achievements" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
       <SectionHeading title="Milestones & Awards" subtitle="Recognition of continuous learning and competitive excellence." />
 
       <motion.div
@@ -48,7 +48,7 @@ export default function Achievements() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16"
       >
         {achievements.map((item, idx) => (
           <motion.div variants={itemVars} key={idx}>
