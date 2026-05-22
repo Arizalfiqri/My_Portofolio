@@ -47,12 +47,13 @@ export default function ProjectDetail() {
     'Game': 'bg-accent/10 text-accent-dark dark:text-accent border-accent/20',
   };
 
-  const containerVars = {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const containerVars: any = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
-  const itemVars = {
+  const itemVars: any = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };

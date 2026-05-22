@@ -2,7 +2,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ProjectCard from '@/components/ui/ProjectCard';
 import { projectsData } from '@/data/projectsData';
@@ -12,7 +12,6 @@ const INITIAL_COUNT = 3;
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
 
-  const visibleProjects = showAll ? projectsData : projectsData.slice(0, INITIAL_COUNT);
   const hasMore = projectsData.length > INITIAL_COUNT;
 
   const containerVars: any = {
