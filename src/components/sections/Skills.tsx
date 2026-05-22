@@ -83,7 +83,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
+    <section id="skills" className="py-8 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
       <SectionHeading title="Technical Skills" subtitle="A visual breakdown of my technical proficiency and interests." />
 
       <motion.div

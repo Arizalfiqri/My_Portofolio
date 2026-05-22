@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Sun, Moon } from 'lucide-react';
+import { Palette } from 'lucide-react';
 import { useTheme } from '@/lib/ThemeContext';
 
 export default function Navbar() {
@@ -10,11 +10,11 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Achievements', href: '#achievements' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/#about' },
+    { name: 'Skills', href: '/#skills' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Achievements', href: '/#achievements' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   const toggleMenu = useCallback(() => {
@@ -61,25 +61,23 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Dark Mode Toggle */}
+            {/* Theme Palette Toggle */}
             <button
               onClick={toggleTheme}
-              className="relative w-10 h-10 rounded-full glass flex items-center justify-center cursor-hover overflow-hidden hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors"
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="relative w-10 h-10 rounded-full glass flex items-center justify-center cursor-hover overflow-hidden hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors group"
+              aria-label={theme === 'dark' ? 'Switch to Theme 1 (Earthy Warm)' : 'Switch to Theme 2 (Slate Coral)'}
+              title={theme === 'dark' ? 'Switch to Theme 1' : 'Switch to Theme 2'}
             >
               <motion.div
                 initial={false}
                 animate={{ 
-                  rotate: theme === 'dark' ? 360 : 0,
-                  scale: 1 
+                  rotate: theme === 'dark' ? 180 : 0,
+                  scale: [1, 1.1, 1]
                 }}
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
+                className="flex items-center justify-center w-full h-full text-primary dark:text-accent group-hover:scale-110 transition-transform"
               >
-                {theme === 'dark' ? (
-                  <Sun size={18} className="text-accent" />
-                ) : (
-                  <Moon size={18} className="text-foreground/70" />
-                )}
+                <Palette size={18} />
               </motion.div>
             </button>
 

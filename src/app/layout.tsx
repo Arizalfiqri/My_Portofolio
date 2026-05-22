@@ -6,6 +6,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
 import PageTransition from '@/components/ui/PageTransition';
+import LoadingScreen from '@/components/ui/LoadingScreen';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} font-sans`}>
         <ThemeProvider>
+          <LoadingScreen />
           <AnimatedBackground />
           <CustomCursor />
           <ScrollProgress />

@@ -31,7 +31,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20 px-4 sm:px-6 overflow-hidden w-full">
+    <section id="hero" className="min-h-[calc(100vh-6rem)] md:min-h-screen flex flex-col justify-center relative pt-4 pb-16 md:pt-20 md:pb-0 px-4 sm:px-6 overflow-hidden w-full">
       {/* Floating Tech Icons — desktop only */}
       {floatingIcons.map((icon) => (
         <motion.div
@@ -68,7 +68,7 @@ export default function Hero() {
 
         <motion.div
           variants={itemVariants}
-          className="text-subtitle text-foreground/60 dark:text-dark-text/60 mb-12 flex flex-col items-center justify-center gap-2 font-light text-center"
+          className="text-subtitle text-foreground/60 dark:text-dark-text/60 mb-8 md:mb-12 flex flex-col items-center justify-center gap-2 font-light text-center"
         >
           <span>IT Student & System Developer focused on</span>
           <AnimatedText />
@@ -96,7 +96,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs uppercase tracking-[0.2em] text-foreground/40 dark:text-dark-text/40">Scroll</span>
         <div

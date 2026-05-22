@@ -4,30 +4,50 @@
 
 @layer base {
   :root {
-    --background: #F7F5F0;
-    --foreground: #2D3142;
-    --primary: #C84B31;
-    --secondary: #7C9885;
-    --accent: #D4A574;
+    /* THEME 1 (Earthy Warm Palette) */
+    --background: 254 250 224; /* #FEFAE0 */
+    --foreground: 96 108 56;   /* #606C38 */
+    --primary: 188 108 37;     /* #BC6C25 */
+    --secondary: 96 108 56;    /* #606C38 */
+    --accent: 221 161 94;      /* #DDA15E */
+
+    /* Semantic support mappings for custom UI classes */
+    --dark-bg: 254 250 224;
+    --dark-surface: 254 250 224;
+    --dark-card: 254 250 224;
+    --dark-text: 96 108 56;
+    --dark-muted: 96 108 56;
   }
 
   .dark {
-    --background: #121212;
-    --foreground: #E2E8F0;
+    /* THEME 2 (Slate Coral Palette) */
+    --background: 37 52 59;    /* #25343B */
+    --foreground: 251 239 223; /* #FBEFDF */
+    --primary: 236 78 61;      /* #EC4E3D */
+    --secondary: 95 165 156;   /* #5FA59C */
+    --accent: 251 239 223;     /* #FBEFDF */
+
+    /* Semantic support mappings for custom UI classes */
+    --dark-bg: 37 52 59;
+    --dark-surface: 37 52 59;
+    --dark-card: 37 52 59;
+    --dark-text: 251 239 223;
+    --dark-muted: 95 165 156;
   }
 
   /* =========================================
-     SMOOTH DARK MODE TRANSITION
-     Only transition bg & color — avoid transition-all 
+     SMOOTH THEME TRANSITION
      ========================================= */
   body {
-    @apply bg-background text-foreground overflow-x-hidden antialiased;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    @apply overflow-x-hidden antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   .dark body {
-    background-color: #121212;
-    color: #E2E8F0;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 
   /* Propagate smooth theme transition to common elements */
@@ -39,7 +59,7 @@
     transition-timing-function: ease;
   }
 
-  /* Opt-out for elements that need their own transition (animations, transforms) */
+  /* Opt-out for elements that need their own transition */
   [class*="blob-"],
   [class*="float-icon"],
   .scroll-indicator-line,
@@ -64,12 +84,13 @@
 
   /* Custom Selection */
   ::selection {
-    @apply bg-primary/15 text-primary-dark;
+    background-color: rgb(var(--primary) / 0.15);
+    color: rgb(var(--primary));
   }
 
   .dark ::selection {
-    background: rgba(200, 75, 49, 0.25);
-    color: #E07A5F;
+    background-color: rgb(var(--primary) / 0.25);
+    color: rgb(var(--accent));
   }
 
   /* Custom Scrollbar */
@@ -78,27 +99,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-
-  .dark ::-webkit-scrollbar-track {
-    background: #121212;
+    background-color: rgb(var(--background));
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-foreground/15 rounded-full;
+    background-color: rgb(var(--foreground) / 0.15);
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-foreground/25;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: rgba(226, 232, 240, 0.15);
-  }
-
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(226, 232, 240, 0.3);
+    background-color: rgb(var(--foreground) / 0.25);
   }
 }
 
@@ -146,7 +156,7 @@
       0 1px 3px rgba(45, 49, 66, 0.04),
       0 4px 12px rgba(45, 49, 66, 0.06),
       0 10px 30px rgba(0, 0, 0, 0.03);
-    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
   }
 
   .dark .warm-card {
@@ -157,19 +167,78 @@
 
   .warm-card:hover {
     box-shadow:
-      0 8px 25px rgba(45, 49, 66, 0.1),
-      0 4px 10px rgba(45, 49, 66, 0.06),
-      0 20px 50px rgba(0, 0, 0, 0.06);
-    transform: translateY(-6px);
+      0 4px 16px rgba(45, 49, 66, 0.08),
+      0 8px 24px rgba(0, 0, 0, 0.04);
     border-color: rgba(200, 75, 49, 0.12);
   }
 
   .dark .warm-card:hover {
     box-shadow:
-      0 8px 30px rgba(0, 0, 0, 0.4),
-      0 4px 10px rgba(0, 0, 0, 0.3),
-      0 0 20px rgba(200, 75, 49, 0.06);
+      0 4px 20px rgba(0, 0, 0, 0.35),
+      0 1px 3px rgba(0, 0, 0, 0.2);
     border-color: rgba(200, 75, 49, 0.15);
+  }
+
+  /* --- PROJECT CARD HOVER: editorial refined lift --- */
+  .project-card-hover .project-card-inner {
+    position: relative;
+    transition: box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.45s ease;
+  }
+
+  /* Accent highlight line at top edge */
+  .project-card-hover .project-card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgb(var(--primary) / 0.6) 30%,
+      rgb(var(--accent) / 0.5) 70%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    z-index: 30;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .project-card-hover:hover .project-card-inner::before {
+    opacity: 1;
+  }
+
+  /* Light mode hover: warm-tinted shadow elevation */
+  .project-card-hover:hover .project-card-inner {
+    border-color: rgb(var(--primary) / 0.12);
+    box-shadow:
+      0 2px 8px rgb(var(--primary) / 0.06),
+      0 12px 36px rgb(var(--primary) / 0.08),
+      0 -1px 0 rgb(var(--primary) / 0.04);
+  }
+
+  /* Dark mode hover: warm ambient glow shadow */
+  .dark .project-card-hover:hover .project-card-inner {
+    border-color: rgb(var(--primary) / 0.18);
+    box-shadow:
+      0 2px 10px rgb(var(--primary) / 0.08),
+      0 12px 40px rgb(var(--primary) / 0.12),
+      0 -1px 0 rgb(var(--primary) / 0.06);
+  }
+
+  /* Subtle image overlay reveal on hover for cinematic depth */
+  .project-card-hover .project-card-inner img {
+    transition: filter 0.5s ease;
+  }
+
+  .project-card-hover:hover .project-card-inner img {
+    filter: brightness(1.04) contrast(1.02);
+  }
+
+  .dark .project-card-hover:hover .project-card-inner img {
+    filter: brightness(0.92) contrast(1.05);
   }
 
   /* --- RESPONSIVE SECTION CONTAINER --- */
@@ -238,82 +307,129 @@
 }
 
 @keyframes blob-move-1 {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
   }
-
-  20% {
-    transform: translate3d(120px, -80px, 0) scale(1.12) rotate(15deg);
+  25% {
+    transform: translate3d(35vw, 15vh, 0) scale(1.15) rotate(25deg);
   }
-
-  40% {
-    transform: translate3d(-60px, 140px, 0) scale(0.92) rotate(-12deg);
+  50% {
+    transform: translate3d(20vw, 55vh, 0) scale(0.95) rotate(-15deg);
   }
-
-  60% {
-    transform: translate3d(100px, 60px, 0) scale(1.08) rotate(22deg);
-  }
-
-  80% {
-    transform: translate3d(-80px, -40px, 0) scale(0.96) rotate(-8deg);
+  75% {
+    transform: translate3d(-10vw, 30vh, 0) scale(1.1) rotate(10deg);
   }
 }
 
 @keyframes blob-move-2 {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
   }
-
-  20% {
-    transform: translate3d(-100px, 70px, 0) scale(1.1) rotate(-20deg);
+  25% {
+    transform: translate3d(-35vw, 30vh, 0) scale(1.1) rotate(-20deg);
   }
-
-  40% {
-    transform: translate3d(80px, -100px, 0) scale(0.9) rotate(18deg);
+  50% {
+    transform: translate3d(-55vw, -10vh, 0) scale(0.9) rotate(15deg);
   }
-
-  60% {
-    transform: translate3d(-50px, -70px, 0) scale(1.14) rotate(-8deg);
-  }
-
-  80% {
-    transform: translate3d(70px, 90px, 0) scale(0.94) rotate(12deg);
+  75% {
+    transform: translate3d(-20vw, -25vh, 0) scale(1.12) rotate(-10deg);
   }
 }
 
 @keyframes blob-move-3 {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
   }
-
-  20% {
-    transform: translate3d(90px, -70px, 0) scale(1.08) rotate(14deg);
+  25% {
+    transform: translate3d(45vw, -35vh, 0) scale(1.12) rotate(18deg);
   }
-
-  40% {
-    transform: translate3d(-110px, 50px, 0) scale(0.92) rotate(-18deg);
+  50% {
+    transform: translate3d(25vw, -15vh, 0) scale(0.92) rotate(-25deg);
   }
-
-  60% {
-    transform: translate3d(60px, 80px, 0) scale(1.12) rotate(26deg);
-  }
-
-  80% {
-    transform: translate3d(-70px, -60px, 0) scale(0.96) rotate(-6deg);
+  75% {
+    transform: translate3d(60vw, -45vh, 0) scale(1.08) rotate(12deg);
   }
 }
 
-/* Dark mode blob adjustments — subtler in dark */
+/* Let outer containers be fully opaque to maximize inner glow visibility */
 .dark .blob-1,
 .dark .blob-2,
 .dark .blob-3 {
-  opacity: 0.2;
+  opacity: 1;
+}
+
+/* =========================================
+   SUPERCHARGED BREATHING GLOW EFFECT
+   ========================================= */
+.animate-glow-pulse {
+  will-change: transform, opacity, filter;
+  animation: glow-breathe 4s ease-in-out infinite alternate;
+}
+
+.animate-glow-pulse-slow {
+  will-change: transform, opacity, filter;
+  animation: glow-breathe 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glow-breathe {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.85);
+    filter: blur(90px) brightness(0.8);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.3);
+    filter: blur(120px) brightness(1.35);
+  }
+}
+
+/* =========================================
+   COSMIC STARFIELD & SHOOTING STARS
+   ========================================= */
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  top: 10%;
+  left: -10%;
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(var(--accent)), transparent);
+  transform: rotate(30deg);
+  animation: shooting-star-anim 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0;
+}
+
+@keyframes shooting-star-anim {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(30deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  15% {
+    transform: translate3d(120vw, 80vh, 0) rotate(30deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(120vw, 80vh, 0) rotate(30deg);
+    opacity: 0;
+  }
 }
 
 /* =========================================
@@ -413,7 +529,7 @@
    GRADIENT ACCENT BUTTON
    ========================================= */
 .gradient-btn {
-  background: linear-gradient(135deg, #C84B31 0%, #E07A5F 50%, #D4A574 100%);
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, rgb(var(--accent)) 50%, rgb(var(--secondary)) 100%);
   background-size: 200% 200%;
   animation: gradient-shift 4s ease infinite;
 }
@@ -428,4 +544,92 @@
   50% {
     background-position: 100% 50%;
   }
+}
+
+/* =========================================
+   LOADING SCREEN
+   ========================================= */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-bg {
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--background));
+}
+
+.dark .loading-bg {
+  background: rgb(var(--background));
+}
+
+.loading-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-logo {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(1.6rem, 4vw + 0.5rem, 2.8rem);
+  font-weight: 700;
+  color: rgb(var(--foreground));
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  user-select: none;
+}
+
+.dark .loading-logo {
+  color: rgb(var(--dark-text));
+}
+
+.loading-logo-accent {
+  color: rgb(var(--primary));
+}
+
+.loading-logo-space {
+  width: 0.3em;
+}
+
+.loading-subtitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(var(--foreground) / 0.4);
+}
+
+.dark .loading-subtitle {
+  color: rgb(var(--dark-text) / 0.35);
+}
+
+.loading-progress-track {
+  width: 120px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgb(var(--foreground) / 0.08);
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.dark .loading-progress-track {
+  background: rgb(var(--dark-text) / 0.08);
+}
+
+.loading-progress-bar {
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--accent)));
+  transform-origin: left center;
 }

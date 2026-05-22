@@ -58,7 +58,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
+    <section id="about" className="py-8 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-6xl mx-auto">
       <SectionHeading title="About Me" />
 
       <motion.div
@@ -66,7 +66,7 @@ export default function About() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-10"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-6 md:mb-10"
       >
         {highlights.map((item) => (
           <motion.div

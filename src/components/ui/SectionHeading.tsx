@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function SectionHeading({ title, subtitle, className = '' }: { title: string, subtitle?: string, className?: string }) {
   return (
-    <div className={`text-center max-w-2xl mx-auto mb-16 md:mb-20 px-4 sm:px-0 ${className}`}>
+    <div className={`text-center max-w-2xl mx-auto mb-10 md:mb-20 px-4 sm:px-0 ${className}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

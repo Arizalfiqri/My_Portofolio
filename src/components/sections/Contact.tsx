@@ -6,10 +6,10 @@ import { Send, Code2 as Github, Briefcase as Linkedin, Mail, MessageSquare as Tw
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-5xl mx-auto">
+    <section id="contact" className="py-8 md:py-24 px-4 sm:px-6 md:px-12 relative z-10 w-full max-w-5xl mx-auto">
       <SectionHeading title="Let&apos;s Connect" subtitle="Interested in working together or discussing web & mobile development?" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-12 md:mt-16 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-6 md:mt-16 items-start">
         {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}

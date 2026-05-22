@@ -10,36 +10,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#F7F5F0", // warm cream
-        foreground: "#2D3142", // charcoal
-        'dark-bg': '#121212',
-        'dark-surface': '#1A1C23',
-        'dark-card': '#1F2937',
-        'dark-text': '#E2E8F0',
-        'dark-muted': '#94A3B8',
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        'dark-bg': "rgb(var(--dark-bg) / <alpha-value>)",
+        'dark-surface': "rgb(var(--dark-surface) / <alpha-value>)",
+        'dark-card': "rgb(var(--dark-card) / <alpha-value>)",
+        'dark-text': "rgb(var(--dark-text) / <alpha-value>)",
+        'dark-muted': "rgb(var(--dark-muted) / <alpha-value>)",
         primary: {
-          DEFAULT: '#C84B31', // terracotta
-          light: '#E07A5F',
-          dark: '#A33B24',
-          glow: 'rgba(200, 75, 49, 0.15)',
+          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
+          light: "rgb(var(--primary) / 0.85)",
+          dark: "rgb(var(--primary) / 0.95)",
+          glow: "rgb(var(--primary) / 0.15)",
         },
         secondary: {
-          DEFAULT: '#7C9885', // sage green
-          light: '#A3BFA8',
-          dark: '#5A7A63',
-          glow: 'rgba(124, 152, 133, 0.15)',
+          DEFAULT: "rgb(var(--secondary) / <alpha-value>)",
+          light: "rgb(var(--secondary) / 0.85)",
+          dark: "rgb(var(--secondary) / 0.95)",
+          glow: "rgb(var(--secondary) / 0.15)",
         },
         accent: {
-          DEFAULT: '#D4A574', // warm gold
-          light: '#E8C9A0',
-          dark: '#B8895A',
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          light: "rgb(var(--accent) / 0.85)",
+          dark: "rgb(var(--accent) / 0.95)",
         },
         card: {
           DEFAULT: 'rgba(255, 255, 255, 0.7)',
           border: 'rgba(45, 49, 66, 0.08)',
           hover: 'rgba(255, 255, 255, 0.9)',
         },
-        muted: '#8D8D9B',
+        muted: "rgb(var(--dark-muted) / <alpha-value>)",
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
@@ -49,11 +49,11 @@ const config: Config = {
         'card': '0 1px 3px rgba(45,49,66,0.04), 0 4px 12px rgba(45,49,66,0.06)',
         'card-hover': '0 8px 25px rgba(45,49,66,0.1), 0 4px 10px rgba(45,49,66,0.06)',
         'card-depth': '0 10px 30px rgba(0,0,0,0.05)',
-        'warm': '0 8px 30px rgba(200,75,49,0.12)',
-        'warm-lg': '0 12px 40px rgba(200,75,49,0.18)',
+        'warm': '0 8px 30px rgb(var(--primary) / 0.12)',
+        'warm-lg': '0 12px 40px rgb(var(--primary) / 0.18)',
         'dark-card': '0 4px 20px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2)',
         'dark-card-hover': '0 8px 30px rgba(0,0,0,0.4), 0 4px 10px rgba(0,0,0,0.3)',
-        'dark-glow': '0 0 30px rgba(200,75,49,0.1)',
+        'dark-glow': '0 0 30px rgb(var(--primary) / 0.1)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

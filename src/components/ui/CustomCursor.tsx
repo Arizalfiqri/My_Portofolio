@@ -1,7 +1,9 @@
 'use client';
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 
 export default function CustomCursor() {
+  const [hasMoved, setHasMoved] = useState(false);
+  const hasMovedRef = useRef(false);
   const outerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -9,7 +11,6 @@ export default function CustomCursor() {
   const dotPos = useRef({ x: 0, y: 0 });
   const rafId = useRef<number>(0);
   const isHovering = useRef(false);
-  const isVisible = useRef(false);
 
   const animate = useCallback(() => {
     outerPos.current.x += (mousePos.current.x - outerPos.current.x) * 0.15;
@@ -46,8 +47,12 @@ export default function CustomCursor() {
       mousePos.current.x = e.clientX;
       mousePos.current.y = e.clientY;
 
-      if (!isVisible.current && outerRef.current && dotRef.current) {
-        isVisible.current = true;
+      if (!hasMovedRef.current) {
+        hasMovedRef.current = true;
+        setHasMoved(true);
+      }
+
+      if (outerRef.current && dotRef.current) {
         outerRef.current.style.opacity = '1';
         dotRef.current.style.opacity = '1';
       }
@@ -66,7 +71,6 @@ export default function CustomCursor() {
     const handleMouseLeave = () => {
       if (outerRef.current) outerRef.current.style.opacity = '0';
       if (dotRef.current) dotRef.current.style.opacity = '0';
-      isVisible.current = false;
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -89,7 +93,7 @@ export default function CustomCursor() {
         ref={outerRef}
         className="fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[100] hidden md:block"
         style={{
-          opacity: 0,
+          opacity: hasMoved ? 1 : 0,
           willChange: 'transform',
           transition: 'border-color 0.2s, background-color 0.2s, opacity 0.3s',
           borderColor: 'rgba(45, 49, 66, 0.25)',
@@ -99,7 +103,7 @@ export default function CustomCursor() {
         ref={dotRef}
         className="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[100] hidden md:block"
         style={{
-          opacity: 0,
+          opacity: hasMoved ? 1 : 0,
           willChange: 'transform',
           transition: 'opacity 0.3s',
         }}
