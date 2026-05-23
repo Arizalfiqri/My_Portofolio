@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Calendar, X, Award } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface AchievementProps {
   title: string;
@@ -21,6 +21,18 @@ function truncate(text: string, wordLimit: number): string {
 export default function AchievementCard({ title, issuer, date, description, image }: AchievementProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeModal = useCallback(() => setIsOpen(false), []);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, closeModal]);
+
   return (
     <>
       {/* Card — click opens modal */}
@@ -34,10 +46,11 @@ export default function AchievementCard({ title, issuer, date, description, imag
         <div className="relative w-full aspect-[16/9] overflow-hidden">
           <Image
             src={image}
-            alt={`${title} certificate`}
+            alt={`${title} — certificate from ${issuer}`}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
           />
           {/* Shadow gradient overlay at bottom of image — Dark mode */}
           <div className="absolute inset-x-0 bottom-0 z-10 h-[45%] pointer-events-none hidden dark:block" style={{
@@ -75,7 +88,10 @@ export default function AchievementCard({ title, issuer, date, description, imag
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12"
-            onClick={() => setIsOpen(false)}
+            onClick={closeModal}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${title} certificate detail`}
           >
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
@@ -92,9 +108,9 @@ export default function AchievementCard({ title, issuer, date, description, imag
             >
               {/* Close Button */}
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={closeModal}
                 className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-foreground/10 dark:bg-dark-text/15 hover:bg-foreground/20 dark:hover:bg-dark-text/25 flex items-center justify-center transition-colors"
-                aria-label="Close"
+                aria-label="Close certificate detail"
               >
                 <X size={16} className="text-foreground dark:text-dark-text" />
               </button>
@@ -121,11 +137,10 @@ export default function AchievementCard({ title, issuer, date, description, imag
                   <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: '3/2' }}>
                     <Image
                       src={image}
-                      alt={`${title} certificate`}
+                      alt={`${title} — certificate from ${issuer}`}
                       fill
                       className="object-contain"
                       sizes="(max-width: 768px) 100vw, 672px"
-                      priority
                     />
                   </div>
                 </div>

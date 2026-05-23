@@ -50,10 +50,18 @@
     color: rgb(var(--foreground));
   }
 
-  /* Propagate smooth theme transition to common elements */
-  *,
-  *::before,
-  *::after {
+  /* Propagate smooth theme transition to specific UI elements */
+  nav,
+  a,
+  button,
+  input,
+  textarea,
+  .warm-card,
+  .glass,
+  .glass-card,
+  .warm-card *,
+  .glass *,
+  .glass-card * {
     transition-property: background-color, border-color, color, fill, stroke, box-shadow;
     transition-duration: 0.3s;
     transition-timing-function: ease;
@@ -632,4 +640,34 @@
   border-radius: 999px;
   background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--accent)));
   transform-origin: left center;
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   Respects user preference for reduced motion.
+   Animations stop but visual state is preserved.
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  .blob-1,
+  .blob-2,
+  .blob-3,
+  .animate-glow-pulse,
+  .animate-glow-pulse-slow,
+  .animate-twinkle,
+  .shooting-star,
+  .float-icon,
+  .scroll-indicator-line,
+  .gradient-btn {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -41,7 +41,8 @@ export default function CustomCursor() {
   useEffect(() => {
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     const isNarrow = window.matchMedia('(max-width: 767px)').matches;
-    if (isTouchDevice || isNarrow) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouchDevice || isNarrow || prefersReducedMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current.x = e.clientX;
@@ -77,12 +78,23 @@ export default function CustomCursor() {
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
     document.documentElement.addEventListener('mouseleave', handleMouseLeave);
 
+    // Pause rAF when tab is not visible to save CPU
+    const handleVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId.current);
+      } else {
+        rafId.current = requestAnimationFrame(animate);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     rafId.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibility);
       cancelAnimationFrame(rafId.current);
     };
   }, [animate]);

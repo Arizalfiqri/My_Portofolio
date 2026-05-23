@@ -140,13 +140,14 @@ export default function ProjectDetail() {
           ) : (
             /* Landscape Gallery — borderless, image floats directly */
             <div className="relative w-full rounded-2xl overflow-hidden">
-              <div className="relative w-full flex items-center justify-center min-h-[280px] md:min-h-[400px] max-h-[75vh]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative w-full min-h-[280px] md:min-h-[400px]" style={{ aspectRatio: '16/9' }}>
+                <Image
                   src={project.images[activeImage]}
                   alt={`${project.title} screenshot ${activeImage + 1}`}
-                  className="w-full h-auto max-h-[75vh] object-contain rounded-2xl"
-                  style={{ display: 'block' }}
+                  fill
+                  className="object-contain rounded-2xl"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 896px, 896px"
+                  priority={activeImage === 0}
                 />
               </div>
 
@@ -192,7 +193,7 @@ export default function ProjectDetail() {
                       : 'opacity-40 hover:opacity-70'
                   }`}
                 >
-                  <Image src={img} alt={`Thumbnail ${idx + 1}`} fill className={`${project.imageType === 'portrait' ? 'object-cover object-top' : 'object-cover'}`} sizes="96px" />
+                  <Image src={img} alt={`${project.title} screenshot ${idx + 1}`} fill className={`${project.imageType === 'portrait' ? 'object-cover object-top' : 'object-cover'}`} sizes="96px" loading="lazy" />
                 </button>
               ))}
             </div>

@@ -41,6 +41,7 @@ export default function Hero() {
           transition={{ delay: 1.5 + Math.abs(icon.delay) * 0.3, duration: 0.8 }}
           className={`absolute hidden md:flex items-center justify-center w-12 h-12 rounded-xl border border-foreground/[0.06] dark:border-dark-text/[0.06] bg-white/50 dark:bg-dark-card/50 backdrop-blur-sm text-xs font-mono font-bold text-foreground/30 dark:text-dark-text/25 select-none ${icon.className}`}
           style={{ left: icon.x, top: icon.y }}
+          aria-hidden="true"
         >
           {icon.label}
         </motion.div>
@@ -97,6 +98,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        aria-hidden="true"
       >
         <span className="text-xs uppercase tracking-[0.2em] text-foreground/40 dark:text-dark-text/40">Scroll</span>
         <div

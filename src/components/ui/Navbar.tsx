@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Palette } from 'lucide-react';
@@ -25,6 +25,16 @@ export default function Navbar() {
     setIsMenuOpen(false);
   }, []);
 
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen, closeMenu]);
+
   return (
     <>
       <motion.header
@@ -47,7 +57,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 glass rounded-full px-8 py-3">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8 glass rounded-full px-8 py-3">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -129,6 +139,8 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="fixed top-[72px] left-4 right-4 z-[55] md:hidden glass rounded-2xl border border-foreground/[0.06] dark:border-dark-text/[0.06] overflow-hidden"
+              role="dialog"
+              aria-label="Mobile navigation menu"
             >
               <div className="flex flex-col py-4">
                 {navItems.map((item, idx) => (

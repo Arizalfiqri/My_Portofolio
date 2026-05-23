@@ -56,7 +56,8 @@ export default function ProjectCard({
                         alt={`${title} preview`}
                         fill
                         className="object-cover object-top"
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -68,7 +69,8 @@ export default function ProjectCard({
                   alt={`${title} preview`}
                   fill
                   className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                 />
               )}
               {/* Category badge on image */}
