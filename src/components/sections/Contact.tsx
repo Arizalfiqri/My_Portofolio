@@ -51,7 +51,7 @@ export default function Contact() {
         setStatus("error");
         setResult(data.message || "Failed to send message.");
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
       setResult("Something went wrong!");
     }
