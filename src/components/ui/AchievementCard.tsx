@@ -58,7 +58,7 @@ export default function AchievementCard({ title, issuer, date, description, imag
           }} />
           {/* Shadow gradient overlay at bottom of image — Light mode */}
           <div className="absolute inset-x-0 bottom-0 z-10 h-[45%] pointer-events-none dark:hidden" style={{
-            background: 'linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 40%, rgba(0,0,0,0.03) 70%, transparent 100%)'
+            background: 'linear-gradient(to top, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 35%, transparent 100%)'
           }} />
           {/* Date badge */}
           <div className="absolute bottom-2.5 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[11px] font-medium">

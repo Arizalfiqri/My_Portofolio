@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {/* Theme Palette Toggle */}
             <button
-              onClick={toggleTheme}
+              onClick={(e) => toggleTheme(e)}
               className="relative w-10 h-10 rounded-full glass flex items-center justify-center cursor-hover overflow-hidden hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors group"
               aria-label={theme === 'dark' ? 'Switch to Theme 1 (Earthy Warm)' : 'Switch to Theme 2 (Slate Coral)'}
               title={theme === 'dark' ? 'Switch to Theme 1' : 'Switch to Theme 2'}

@@ -12,28 +12,28 @@ const achievements = [
     issuer: "Universitas Muhammadiyah Kotabumi",
     date: "Okt 2025",
     description: "Meraih Juara 1 dalam Lomba Web Development pada acara Pekan Cangget ke-2 tahun 2025 yang diselenggarakan oleh Universitas Muhammadiyah Kotabumi.",
-    image: "/certificates/juara1_web.jpeg",
+    image: "https://hdvcltkiaidceinruxja.supabase.co/storage/v1/object/public/image_porto/sertifikat/juara1_web.jpeg",
   },
   {
     title: "Juara 1 Project Terfavorit",
     issuer: "Universitas Muhammadiyah Kotabumi",
     date: "Agt 2025",
     description: "Meraih Juara 1 kategori Lomba Project Terfavorit pada Lomba Karya Teknologi Mahasiswa di Universitas Muhammadiyah Kotabumi.",
-    image: "/certificates/juara1_terfavorit.jpeg",
+    image: "https://hdvcltkiaidceinruxja.supabase.co/storage/v1/object/public/image_porto/sertifikat/juara1_terfavorit.jpeg",
   },
   {
     title: "Agen Analisis Statistik Terbaik",
     issuer: "BPS Kab. Lampung Utara",
     date: "Feb 2026",
     description: "Penghargaan sebagai Agen Tim Analisis Statistik Terbaik dalam Program Pojok Statistik (Potik) di Universitas Muhammadiyah Kotabumi.",
-    image: "/certificates/agen_potik.jpeg",
+    image: "https://hdvcltkiaidceinruxja.supabase.co/storage/v1/object/public/image_porto/sertifikat/agen_potik.jpeg",
   },
   {
     title: "Peserta Game Prototype Dev.",
     issuer: "APSI-PTMA",
     date: "Apr 2026",
     description: "Berpartisipasi dalam lomba Game Prototype Development pada Musyawarah Nasional APSI-PTMA 2026 di Sukabumi.",
-    image: "/certificates/peserta_lomba_game_dev.png",
+    image: "https://hdvcltkiaidceinruxja.supabase.co/storage/v1/object/public/image_porto/sertifikat/peserta_lomba_game_dev.png",
   }
 ];
 

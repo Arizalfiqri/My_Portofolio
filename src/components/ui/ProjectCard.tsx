@@ -18,10 +18,11 @@ interface ProjectCardProps {
   solution?: string;
   background?: string;
   features?: string[];
+  priority?: boolean;
 }
 
 export default function ProjectCard({
-  slug, title, category, images, description, imageType = 'landscape'
+  slug, title, category, images, description, imageType = 'landscape', priority = false
 }: ProjectCardProps) {
 
   const categoryColors: Record<string, string> = {
@@ -57,7 +58,8 @@ export default function ProjectCard({
                         fill
                         className="object-cover object-top"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        loading="lazy"
+                        priority={priority}
+                        loading={priority ? undefined : "lazy"}
                       />
                     </div>
                   </div>
@@ -70,7 +72,8 @@ export default function ProjectCard({
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
+                  priority={priority}
+                  loading={priority ? undefined : "lazy"}
                 />
               )}
               {/* Category badge on image */}
@@ -91,7 +94,7 @@ export default function ProjectCard({
               <div className={`absolute inset-x-0 bottom-0 z-10 h-[45%] pointer-events-none dark:hidden ${
                 isPortrait ? '!hidden' : ''
               }`} style={{
-                background: 'linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 40%, rgba(0,0,0,0.03) 70%, transparent 100%)'
+                background: 'linear-gradient(to top, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 35%, transparent 100%)'
               }} />
             </div>
           )}

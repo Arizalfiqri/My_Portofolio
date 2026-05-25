@@ -39,9 +39,9 @@ export default function Projects() {
         viewport={{ once: true, margin: "-100px" }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mt-6 md:mt-16"
       >
-        {projectsData.slice(0, INITIAL_COUNT).map((project) => (
+        {projectsData.slice(0, INITIAL_COUNT).map((project, index) => (
           <motion.div variants={itemVars} key={project.slug}>
-            <ProjectCard {...project} />
+            <ProjectCard {...project} priority={index < 2} />
           </motion.div>
         ))}
       </motion.div>
