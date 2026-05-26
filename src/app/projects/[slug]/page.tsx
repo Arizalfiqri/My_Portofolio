@@ -1,6 +1,6 @@
 'use client';
 import { useParams, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowLeft, ExternalLink, Code2, Lightbulb, Wrench, BookOpen, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { projectsData } from '@/data/projectsData';
@@ -47,13 +47,12 @@ export default function ProjectDetail() {
     'Game': 'bg-accent/10 text-accent-dark dark:text-accent border-accent/20',
   };
 
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const containerVars: any = {
+  const containerVars: Variants = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
-  const itemVars: any = {
+  const itemVars: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };

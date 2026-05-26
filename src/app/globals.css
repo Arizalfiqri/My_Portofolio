@@ -17,6 +17,7 @@
     --dark-card: 254 250 224;
     --dark-text: 96 108 56;
     --dark-muted: 96 108 56;
+    --cursor-border: rgba(45, 49, 66, 0.25);
   }
 
   .dark {
@@ -33,6 +34,7 @@
     --dark-card: 37 52 59;
     --dark-text: 251 239 223;
     --dark-muted: 95 165 156;
+    --cursor-border: rgba(226, 232, 240, 0.2);
   }
 
   /* =========================================
@@ -155,7 +157,7 @@
 
   /* --- WARM CARD WITH DEPTH & MICRO-INTERACTIONS --- */
   .warm-card {
-    @apply bg-white/70 border border-white/80 rounded-2xl backdrop-blur-lg;
+    @apply bg-white/70 border border-white/80 rounded-2xl backdrop-blur-sm;
     box-shadow:
       0 8px 32px 0 rgba(45, 49, 66, 0.05),
       0 1px 3px rgba(0, 0, 0, 0.02),

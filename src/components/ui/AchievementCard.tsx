@@ -94,7 +94,7 @@ export default function AchievementCard({ title, issuer, date, description, imag
             aria-label={`${title} certificate detail`}
           >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
+            <div className="absolute inset-0 bg-black/80" />
 
             {/* Modal */}
             <motion.div
@@ -103,7 +103,7 @@ export default function AchievementCard({ title, issuer, date, description, imag
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="relative w-full max-w-2xl rounded-2xl overflow-hidden bg-white dark:bg-dark-surface shadow-2xl"
-              style={{ maxHeight: 'calc(100vh - 8rem)', marginTop: '2rem' }}
+              style={{ maxHeight: 'calc(100vh - 8rem)', marginTop: '2rem', willChange: 'transform, opacity' }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}

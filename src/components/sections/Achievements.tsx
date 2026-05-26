@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import AchievementCard from '@/components/ui/AchievementCard';
@@ -42,7 +41,7 @@ const INITIAL_COUNT = 3;
 export default function Achievements() {
   const [showAll, setShowAll] = useState(false);
   const hasMore = achievements.length > INITIAL_COUNT;
-  const containerVars: any = {
+  const containerVars: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -50,7 +49,7 @@ export default function Achievements() {
     }
   };
 
-  const itemVars: any = {
+  const itemVars: Variants = {
     hidden: { opacity: 0, scale: 0.95, y: 30 },
     show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, type: "spring" } }
   };

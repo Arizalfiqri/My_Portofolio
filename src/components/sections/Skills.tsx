@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import {
   Code2, Database, Globe, Smartphone,
@@ -69,7 +68,7 @@ const accentMap: Record<string, { border: string; bg: string; text: string; hove
 };
 
 export default function Skills() {
-  const containerVars: any = {
+  const containerVars: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -77,7 +76,7 @@ export default function Skills() {
     }
   };
 
-  const itemVars: any = {
+  const itemVars: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
